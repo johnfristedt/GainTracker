@@ -5,9 +5,10 @@
 }
 
 <h2>@User.Identity.Name's profile</h2>
+<h4>Your tracked data</h4>
 
 <p>
-    @Html.ActionLink("Add category", "AddTrackedData", "Profile")
+    @Html.ActionLink("Add category", "AddTrackedData", "Profile", new { @class = "btn btn-default btn.sm" })
 </p>
 <table class="table">
 
@@ -15,7 +16,7 @@
     <tr>
         <td>
             <h4>
-                @item.Name | 
+                @item.Name |
                 @foreach (var datapoint in item.DataPoints)
                 {
                     @datapoint.Value <text>|</text>
@@ -37,7 +38,7 @@
                 <h4 class="modal-title">Graph</h4>
             </div>
             <div class="modal-body">
-                    <canvas id="graph-canvas"></canvas>
+                <canvas id="graph-canvas"></canvas>
                 <input type="hidden" class="form-control" ng-model="eventQuestion.Id" />
                 <input type="hidden" class="form-control" ng-model="eventQuestion.EventId" />
             </div><br />
@@ -47,8 +48,3 @@
         </div>
     </div>
 </div>
-
-@section Scripts {
-    <script src="~/Scripts/Chart/Chart.min.js"></script>
-    <script src="~/Scripts/GraphScript.js"></script>
-}

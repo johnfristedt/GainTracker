@@ -1,4 +1,5 @@
 ﻿function showGraph(graphData) {
+    console.log('test');
     var wait = setInterval(function () {
         var lineGraphData = {
             labels: graphData,
@@ -19,5 +20,5 @@
         var chart = new Chart(ctx).Line(lineGraphData);
 
         clearInterval(wait);
-    }, 500);
+    }, 2000);
 }

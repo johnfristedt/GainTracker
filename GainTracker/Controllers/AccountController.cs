@@ -60,7 +60,7 @@ namespace GainTracker.Controllers
 
             FormsAuthentication.SetAuthCookie(model.UserName, true);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Profile");
         }
 
         public ActionResult Logout()
