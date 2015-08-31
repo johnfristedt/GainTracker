@@ -1,0 +1,54 @@
+﻿@model GainTracker.Models.ViewModels.ProfileIndexViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Add category", "AddTrackedData", "Profile")
+</p>
+<table class="table">
+
+@foreach (var item in Model.TrackedData) {
+    <tr>
+        <td>
+            <h4>
+                @item.Name | 
+                @foreach (var datapoint in item.DataPoints)
+                {
+                    @datapoint.Value <text>|</text>
+                }
+            </h4>
+            @Html.ActionLink("Add new", "AddDataPoint", "Profile", new { trackedDataId = item.Id }, new { @class = "btn btn-default btn-sm" })
+            <button id="show-graph" class="pull-right right btn btn-default btn-sm" data-toggle="modal" data-target="#question-modal" onclick="showGraph(@Html.Raw(Json.Encode(item.DataPointValues)))">Show graph</button>
+        </td>
+    </tr>
+}
+
+</table>
+
+<div id="question-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Graph</h4>
+            </div>
+            <div class="modal-body">
+                    <canvas id="graph-canvas"></canvas>
+                <input type="hidden" class="form-control" ng-model="eventQuestion.Id" />
+                <input type="hidden" class="form-control" ng-model="eventQuestion.EventId" />
+            </div><br />
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/Chart/Chart.min.js"></script>
+    <script src="~/Scripts/GraphScript.js"></script>
+}
