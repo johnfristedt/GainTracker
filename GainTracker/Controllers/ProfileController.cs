@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using GainTracker.Helpers;
+using GainTracker.Models;
 using GainTracker.Models.Repositories;
 using GainTracker.Models.ViewModels;
 using System;
@@ -41,6 +43,13 @@ namespace GainTracker.Controllers
         {
             repository.AddTrackedData(model);
 
+            repository.AddStatistic(new CreateStatisticModel
+            {
+                Type = (int)StatisticsHelper.StatisticTypes.AddedCat,
+                Time = DateTime.Now,
+                IPAddress = Request.UserHostAddress
+            });
+
             return RedirectToAction("Index", "Profile");
         }
 
@@ -58,6 +67,13 @@ namespace GainTracker.Controllers
         public ActionResult AddDataPoint(CreateDataPointViewModel model)
         {
             repository.AddDataPoint(model);
+
+            repository.AddStatistic(new CreateStatisticModel
+            {
+                Type = (int)StatisticsHelper.StatisticTypes.AddedData,
+                Time = DateTime.Now,
+                IPAddress = Request.UserHostAddress
+            });
 
             return RedirectToAction("Index", "Profile");
         }

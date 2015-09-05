@@ -13,5 +13,9 @@ namespace GainTracker.Models.Repositories
         ProfileIndexViewModel GetProfileViewModel(string userName);
         void AddTrackedData(CreateTrackedDataViewModel model);
         void AddDataPoint(CreateDataPointViewModel model);
+        void AddStatistic(CreateStatisticModel model);
+        bool CheckIP(string address);
+        bool CheckRegister(string address);
+        bool CheckLogin(string address);
     }
 }

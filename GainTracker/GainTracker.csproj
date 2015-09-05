@@ -149,13 +149,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\StatisticsHelper.cs" />
     <Compile Include="Migrations\201508271725558_InitialCreate-IgnoreChanges.cs" />
     <Compile Include="Migrations\201508271725558_InitialCreate-IgnoreChanges.Designer.cs">
       <DependentUpon>201508271725558_InitialCreate-IgnoreChanges.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Contexts\GainTrackerContext.cs" />
+    <Compile Include="Models\CreateStatisticModel.cs" />
     <Compile Include="Models\EntityModels\DataPoint.cs" />
+    <Compile Include="Models\EntityModels\Statistic.cs" />
     <Compile Include="Models\EntityModels\TrackedData.cs" />
     <Compile Include="Models\Repositories\DbGainTrackerRepository.cs" />
     <Compile Include="Models\Repositories\IGainTrackerRepository.cs" />

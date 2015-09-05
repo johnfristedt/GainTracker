@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using GainTracker.Helpers;
 using GainTracker.Models.Contexts;
 using GainTracker.Models.EntityModels;
 using GainTracker.Models.ViewModels;
@@ -51,6 +52,53 @@ namespace GainTracker.Models.Repositories
             {
                 db.DataPoints.Add(Mapper.Map<DataPoint>(model));
                 db.SaveChanges();
+            }
+        }
+
+
+        public void AddStatistic(CreateStatisticModel model)
+        {
+            using (var db = new GainTrackerContext(ACTIVE_CONNECTION))
+            {
+                db.Statistics.Add(Mapper.Map<Statistic>(model));
+                db.SaveChanges();
+            }
+        }
+
+
+        public bool CheckIP(string address)
+        {
+            using (var db = new GainTrackerContext(ACTIVE_CONNECTION))
+            {
+                if (db.Statistics.FirstOrDefault(s => s.IPAddress == address) != null)
+                    return true;
+
+                return false;
+            }
+        }
+
+
+        public bool CheckRegister(string address)
+        {
+            using (var db = new GainTrackerContext(ACTIVE_CONNECTION))
+            {
+                if (db.Statistics.FirstOrDefault(
+                        s => s.Type == (int)StatisticsHelper.StatisticTypes.Register && s.IPAddress == address) != null)
+                    return true;
+
+                return false;
+            }
+        }
+
+        public bool CheckLogin(string address)
+        {
+            using (var db = new GainTrackerContext(ACTIVE_CONNECTION))
+            {
+                if (db.Statistics.FirstOrDefault(
+                        s => s.Type == (int)StatisticsHelper.StatisticTypes.Login && s.IPAddress != address) == null)
+                    return true;
+
+                return false;
             }
         }
     }
