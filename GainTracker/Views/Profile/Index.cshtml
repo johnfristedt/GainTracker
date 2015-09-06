@@ -8,7 +8,8 @@
 <h4>Your tracked data</h4>
 
 <p>
-    @Html.ActionLink("Add category", "AddTrackedData", "Profile", new { @class = "btn btn-default btn.sm" })
+    @*@Html.ActionLink("Add category", "AddTrackedData", "Profile", new { @class = "btn btn-default btn.sm" })*@
+    <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#category-modal">Add category</button>
 </p>
 <table class="table">
 
@@ -22,15 +23,19 @@
                     @datapoint.Value <text>|</text>
                 }
             </h4>
-            @Html.ActionLink("Add new", "AddDataPoint", "Profile", new { trackedDataId = item.Id }, new { @class = "btn btn-default btn-sm" })
-            <button id="show-graph" class="pull-right right btn btn-default btn-sm" data-toggle="modal" data-target="#question-modal" onclick="showGraph(@Html.Raw(Json.Encode(item.DataPointValues)))">Show graph</button>
+            <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#data-modal" onclick="setAddDataId(@item.Id)"><span class="glyphicon glyphicon-plus"></span></button>
+            <button id="show-graph" class="pull-right right btn btn-default btn-sm" data-toggle="modal" data-target="#graph-modal" onclick="showGraph(@Html.Raw(Json.Encode(item.DataPointValues)))">Show graph</button>
         </td>
     </tr>
 }
 
 </table>
 
-<div id="question-modal" class="modal fade" role="dialog">
+@Html.Partial("_AddTrackedPartial", Model.CreateTrackedViewModel)
+
+@Html.Partial("_AddDataPartial")
+
+<div id="graph-modal" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -39,8 +44,6 @@
             </div>
             <div class="modal-body">
                 <canvas id="graph-canvas"></canvas>
-                <input type="hidden" class="form-control" ng-model="eventQuestion.Id" />
-                <input type="hidden" class="form-control" ng-model="eventQuestion.EventId" />
             </div><br />
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

@@ -148,6 +148,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\profile.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -161,13 +162,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\StatisticsHelper.cs" />
     <Compile Include="Migrations\201508271725558_InitialCreate-IgnoreChanges.cs" />
     <Compile Include="Migrations\201508271725558_InitialCreate-IgnoreChanges.Designer.cs">
       <DependentUpon>201508271725558_InitialCreate-IgnoreChanges.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Contexts\GainTrackerContext.cs" />
+    <Compile Include="Models\CreateStatisticModel.cs" />
     <Compile Include="Models\EntityModels\DataPoint.cs" />
+    <Compile Include="Models\EntityModels\Statistic.cs" />
     <Compile Include="Models\EntityModels\TrackedData.cs" />
     <Compile Include="Models\Repositories\DbGainTrackerRepository.cs" />
     <Compile Include="Models\Repositories\IGainTrackerRepository.cs" />
@@ -192,6 +196,8 @@
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Profile\AddTrackedData.cshtml" />
     <Content Include="Views\Profile\AddDataPoint.cshtml" />
+    <Content Include="Views\Shared\_AddTrackedPartial.cshtml" />
+    <Content Include="Views\Shared\_AddDataPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

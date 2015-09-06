@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using GainTracker.Helpers;
 using GainTracker.Models.Contexts;
 using GainTracker.Models.EntityModels;
 using GainTracker.Models.ViewModels;
@@ -6,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 
 namespace GainTracker.Models.Repositories
 {
@@ -14,7 +16,7 @@ namespace GainTracker.Models.Repositories
         const string LOCALDB = "GainTrackerLocalDB";
         const string TIMMILOCALDB = "TimmiLocalDB";
         const string LIVEDB = "GainTrackerLiveDB";
-        const string ACTIVE_CONNECTION = TIMMILOCALDB;
+        const string ACTIVE_CONNECTION = LIVEDB;
 
         public ViewModels.ProfileIndexViewModel GetProfileViewModel(string userName)
         {
@@ -30,6 +32,16 @@ namespace GainTracker.Models.Repositories
                     item.DataPoints = db.DataPoints.Where(d => d.TrackedDataId == item.Id).ToArray();
                     item.DataPointValues = item.DataPoints.Select(d => d.Value).ToArray();
                 }
+
+                vm.CreateTrackedViewModel = new CreateTrackedDataViewModel
+                {
+                    UserName = Membership.GetUser().UserName
+                };
+
+                //vm.CreateDataPointViewModel = new CreateDataPointViewModel
+                //{
+                    
+                //}
 
                 return vm;
             }
@@ -52,6 +64,53 @@ namespace GainTracker.Models.Repositories
             {
                 db.DataPoints.Add(Mapper.Map<DataPoint>(model));
                 db.SaveChanges();
+            }
+        }
+
+
+        public void AddStatistic(CreateStatisticModel model)
+        {
+            using (var db = new GainTrackerContext(ACTIVE_CONNECTION))
+            {
+                db.Statistics.Add(Mapper.Map<Statistic>(model));
+                db.SaveChanges();
+            }
+        }
+
+
+        public bool CheckIP(string address)
+        {
+            using (var db = new GainTrackerContext(ACTIVE_CONNECTION))
+            {
+                if (db.Statistics.FirstOrDefault(s => s.IPAddress == address) != null)
+                    return true;
+
+                return false;
+            }
+        }
+
+
+        public bool CheckRegister(string address)
+        {
+            using (var db = new GainTrackerContext(ACTIVE_CONNECTION))
+            {
+                if (db.Statistics.FirstOrDefault(
+                        s => s.Type == (int)StatisticsHelper.StatisticTypes.Register && s.IPAddress == address) != null)
+                    return true;
+
+                return false;
+            }
+        }
+
+        public bool CheckLogin(string address)
+        {
+            using (var db = new GainTrackerContext(ACTIVE_CONNECTION))
+            {
+                if (db.Statistics.FirstOrDefault(
+                        s => s.Type == (int)StatisticsHelper.StatisticTypes.Login && s.IPAddress != address) == null)
+                    return true;
+
+                return false;
             }
         }
     }

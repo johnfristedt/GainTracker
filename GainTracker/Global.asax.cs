@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using GainTracker.Models;
 using GainTracker.Models.Contexts;
 using GainTracker.Models.EntityModels;
 using GainTracker.Models.ViewModels;
@@ -21,6 +22,7 @@ namespace GainTracker
 
             Mapper.CreateMap<CreateTrackedDataViewModel, TrackedData>();
             Mapper.CreateMap<CreateDataPointViewModel, DataPoint>();
+            Mapper.CreateMap<CreateStatisticModel, Statistic>();
             //Mapper.CreateMap<TrackedData, TrackedDataViewModel>();
         }
     }

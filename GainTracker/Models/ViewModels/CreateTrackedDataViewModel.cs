@@ -11,7 +11,7 @@ namespace GainTracker.Models.ViewModels
         [Required]
         public string UserName { get; set; }
         [Required]
-        [Display(Name="Name of data to track")]
+        [Display(Name="Name: ")]
         public string Name { get; set; }
     }
 }

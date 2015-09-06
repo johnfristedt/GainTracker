@@ -1,4 +1,7 @@
-﻿using GainTracker.Models.ViewModels;
+﻿using GainTracker.Helpers;
+using GainTracker.Models;
+using GainTracker.Models.Repositories;
+using GainTracker.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +13,13 @@ namespace GainTracker.Controllers
 {
     public class AccountController : Controller
     {
+        IGainTrackerRepository repository;
+
+        public AccountController(IGainTrackerRepository repository)
+        {
+            this.repository = repository;
+        }
+
         // GET: Account
         public ActionResult Register()
         {
@@ -37,8 +47,15 @@ namespace GainTracker.Controllers
             Roles.AddUserToRole(model.UserName, "Users");
 
             FormsAuthentication.SetAuthCookie(model.UserName, true);
-            
-            return RedirectToAction("Index", "Home");
+
+            repository.AddStatistic(new CreateStatisticModel
+            {
+                Type = (int)StatisticsHelper.StatisticTypes.Register,
+                Time = DateTime.Now,
+                IPAddress = Request.UserHostAddress
+            });
+
+            return RedirectToAction("Index", "Profile");
         }
 
         public ActionResult Login()
@@ -59,6 +76,13 @@ namespace GainTracker.Controllers
             }
 
             FormsAuthentication.SetAuthCookie(model.UserName, true);
+
+            repository.AddStatistic(new CreateStatisticModel
+            {
+                Type = (int)StatisticsHelper.StatisticTypes.Login,
+                Time = DateTime.Now,
+                IPAddress = Request.UserHostAddress
+            });
 
             return RedirectToAction("Index", "Profile");
         }
