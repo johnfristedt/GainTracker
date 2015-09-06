@@ -1,5 +1,9 @@
-﻿function showGraph(graphData) {
-    console.log('test');
+﻿var canvas = document.querySelector('#graph-canvas');
+var ctx = canvas.getContext('2d');
+
+function showGraph(graphData) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
     var wait = setInterval(function () {
         var lineGraphData = {
             labels: graphData,
@@ -16,7 +20,6 @@
             ]
         }
 
-        var ctx = document.getElementById('graph-canvas').getContext('2d');
         var chart = new Chart(ctx).Line(lineGraphData);
 
         clearInterval(wait);

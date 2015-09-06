@@ -7,7 +7,12 @@ $('#add-category').click(function () {
 });
 
 $('#add-data').click(function () {
+    console.log('click');
     $.post('Profile/AddDataPoint', $('#add-data-form').serialize(), function (data) {
         location.reload();
     });
 });
+
+function setAddDataId(id) {
+    $('#tracked-data-id').val(id);
+}

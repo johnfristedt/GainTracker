@@ -66,6 +66,9 @@ namespace GainTracker.Controllers
         [HttpPost]
         public ActionResult AddDataPoint(CreateDataPointViewModel model)
         {
+            if (!ModelState.IsValid)
+                return View(model);
+
             repository.AddDataPoint(model);
 
             repository.AddStatistic(new CreateStatisticModel

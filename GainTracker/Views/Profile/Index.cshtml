@@ -9,7 +9,7 @@
 
 <p>
     @*@Html.ActionLink("Add category", "AddTrackedData", "Profile", new { @class = "btn btn-default btn.sm" })*@
-    <button id="show-graph" class="btn btn-default btn-sm" data-toggle="modal" data-target="#category-modal">Add category</button>
+    <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#category-modal">Add category</button>
 </p>
 <table class="table">
 
@@ -23,7 +23,7 @@
                     @datapoint.Value <text>|</text>
                 }
             </h4>
-            <button id="show-graph" class="btn btn-default btn-sm" data-toggle="modal" data-target="#data-modal"><span class="glyphicon glyphicon-plus"></span></button>
+            <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#data-modal" onclick="setAddDataId(@item.Id)"><span class="glyphicon glyphicon-plus"></span></button>
             <button id="show-graph" class="pull-right right btn btn-default btn-sm" data-toggle="modal" data-target="#graph-modal" onclick="showGraph(@Html.Raw(Json.Encode(item.DataPointValues)))">Show graph</button>
         </td>
     </tr>
@@ -33,24 +33,7 @@
 
 @Html.Partial("_AddTrackedPartial", Model.CreateTrackedViewModel)
 
-@Html.Partial("_AddDataPartial", Model.TrackedData)
-
-<div id="data-modal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Graph</h4>
-            </div>
-            <div class="modal-body">
-                <canvas id="graph-canvas"></canvas>
-            </div><br />
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
+@Html.Partial("_AddDataPartial")
 
 <div id="graph-modal" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -68,7 +51,3 @@
         </div>
     </div>
 </div>
-
-@section Scripts {
-    <script src="~/Scripts/profile.js"></script>
-}
