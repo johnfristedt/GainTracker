@@ -7,12 +7,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 
 namespace GainTracker.Models.Repositories
 {
     public class DbGainTrackerRepository : IGainTrackerRepository
     {
         const string LOCALDB = "GainTrackerLocalDB";
+        const string TIMMILOCALDB = "TimmiLocalDB";
         const string LIVEDB = "GainTrackerLiveDB";
         const string ACTIVE_CONNECTION = LIVEDB;
 
@@ -30,6 +32,16 @@ namespace GainTracker.Models.Repositories
                     item.DataPoints = db.DataPoints.Where(d => d.TrackedDataId == item.Id).ToArray();
                     item.DataPointValues = item.DataPoints.Select(d => d.Value).ToArray();
                 }
+
+                vm.CreateTrackedViewModel = new CreateTrackedDataViewModel
+                {
+                    UserName = Membership.GetUser().UserName
+                };
+
+                //vm.CreateDataPointViewModel = new CreateDataPointViewModel
+                //{
+                    
+                //}
 
                 return vm;
             }

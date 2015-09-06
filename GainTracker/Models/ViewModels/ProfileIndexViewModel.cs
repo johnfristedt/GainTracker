@@ -9,5 +9,7 @@ namespace GainTracker.Models.ViewModels
     public class ProfileIndexViewModel
     {
         public List<TrackedData> TrackedData { get; set; }
+        public CreateTrackedDataViewModel CreateTrackedViewModel { get; set; }
+        public CreateDataPointViewModel CreateDataPointViewModel { get; set; }
     }
 }
