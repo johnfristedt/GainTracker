@@ -117,15 +117,9 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Pic\newbar.jpg" />
-    <Content Include="Pic\training-601214_1280 %281%29.jpg" />
     <Content Include="Pic\training-601214_1920_637.jpg" />
-    <Content Include="Pic\training-601214_640.jpg" />
-    <Content Include="Pic\training-828726_1280.jpg" />
     <Content Include="Pic\training-828726_1920_637.jpg" />
-    <Content Include="Pic\training-828726_640.jpg" />
-    <Content Include="Pic\training-828764_1280.jpg" />
     <Content Include="Pic\training-828764_1920_637.jpg" />
-    <Content Include="Pic\training-828764_640.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\GainTracker.pubxml" />
