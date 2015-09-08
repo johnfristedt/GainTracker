@@ -107,6 +107,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\LandingPage.css" />
+    <Content Include="Content\simple-sidebar.css" />
+    <Content Include="Content\site-admin.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -120,6 +122,8 @@
     <Content Include="Pic\training-601214_1920_637.jpg" />
     <Content Include="Pic\training-828726_1920_637.jpg" />
     <Content Include="Pic\training-828764_1920_637.jpg" />
+    <Content Include="Scripts\admin-controls.js" />
+    <Content Include="Scripts\admin-ui.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\GainTracker.pubxml" />
@@ -151,31 +155,32 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\StatisticsHelper.cs" />
-    <Compile Include="Migrations\201508271725558_InitialCreate-IgnoreChanges.cs" />
-    <Compile Include="Migrations\201508271725558_InitialCreate-IgnoreChanges.Designer.cs">
-      <DependentUpon>201508271725558_InitialCreate-IgnoreChanges.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Contexts\GainTrackerContext.cs" />
     <Compile Include="Models\CreateStatisticModel.cs" />
     <Compile Include="Models\EntityModels\DataPoint.cs" />
+    <Compile Include="Models\EntityModels\Exercise.cs" />
     <Compile Include="Models\EntityModels\Statistic.cs" />
     <Compile Include="Models\EntityModels\TrackedData.cs" />
     <Compile Include="Models\Repositories\DbGainTrackerRepository.cs" />
     <Compile Include="Models\Repositories\IGainTrackerRepository.cs" />
-    <Compile Include="Models\ViewModels\CreateDataPointViewModel.cs" />
-    <Compile Include="Models\ViewModels\CreateTrackedDataViewModel.cs" />
+    <Compile Include="Models\ViewModels\Create\CreateDataPointViewModel.cs" />
+    <Compile Include="Models\ViewModels\Create\CreateExerciseViewModel.cs" />
+    <Compile Include="Models\ViewModels\Create\CreateTrackedDataViewModel.cs" />
+    <Compile Include="Models\ViewModels\ExerciseViewModel.cs" />
     <Compile Include="Models\ViewModels\FormViewModel.cs" />
     <Compile Include="Models\ViewModels\LoginViewModel.cs" />
     <Compile Include="Models\ViewModels\ProfileIndexViewModel.cs" />
     <Compile Include="Models\ViewModels\RegisterViewModel.cs" />
+    <Compile Include="Models\ViewModels\StatisticListViewModel.cs" />
     <Compile Include="Models\ViewModels\TrackedDataViewModel.cs" />
+    <Compile Include="Models\ViewModels\StatisticViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -192,6 +197,10 @@
     <Content Include="Views\Profile\AddDataPoint.cshtml" />
     <Content Include="Views\Shared\_AddTrackedPartial.cshtml" />
     <Content Include="Views\Shared\_AddDataPartial.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\AddExercise.cshtml" />
+    <Content Include="Views\Admin\ViewExercises.cshtml" />
+    <Content Include="Views\Admin\ViewStatistics.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -201,11 +210,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201508271725558_InitialCreate-IgnoreChanges.resx">
-      <DependentUpon>201508271725558_InitialCreate-IgnoreChanges.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

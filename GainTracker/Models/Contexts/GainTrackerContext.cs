@@ -9,6 +9,8 @@ namespace GainTracker.Models.Contexts
 {
     public class GainTrackerContext : DbContext
     {
+        public DbSet<Exercise> Exercises { get; set; }
+
         public DbSet<TrackedData> TrackedData { get; set; }
         public DbSet<DataPoint> DataPoints { get; set; }
         public DbSet<Statistic> Statistics { get; set; }

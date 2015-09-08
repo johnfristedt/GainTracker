@@ -1,0 +1,82 @@
+﻿body {
+    padding: 0;
+}
+
+#sidebar-wrapper {
+    background: #e5e5e5;
+}
+
+.dropdown-menu {
+    /*box-shadow: none;*/
+}
+
+.nav-tabs {
+    border: none;
+}
+
+.sidebar-collapse {
+    list-style: none;
+    margin: 0;
+    padding-left: 10px;
+    color: #000;
+}
+
+.dropdown-arrow {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    vertical-align: middle;
+    margin-left: 2px;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    border-left: 4px dashed;
+}
+
+.dropdown-arrow-open {
+   
+
+    margin-top: 2px;
+    margin-left: 0;
+    border-top: 4px dashed;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+}
+
+.sidebar-collapse {
+    display: none;
+}
+
+.sidebar-brand a {
+    float: left;
+}
+
+
+
+.listbox-buttons, .role-box, .user-box {
+    display: inline-block;
+    float: left;
+}
+
+.listbox-buttons {
+    margin: 5px;
+}
+
+.listbox-buttons tr td {
+    
+    padding: 2px;
+}
+
+.role-box, .user-box {
+    min-width: 200px;
+}
+
+.collapse-control {
+    display: none;
+}
+
+.control-toggle, .control-toggle:hover, .control-toggle:focus {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    padding-bottom: 50px;
+}

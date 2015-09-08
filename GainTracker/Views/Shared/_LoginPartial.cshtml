@@ -6,6 +6,10 @@
     }
     else
     {
+        if (User.IsInRole("Admins"))
+        {
+            <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
+        }
         <li>@Html.ActionLink("My profile", "Index", "Profile")</li>
         <li>@Html.ActionLink("Log out", "Logout", "Account")</li>
     }

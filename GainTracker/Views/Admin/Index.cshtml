@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Admin</h2>
+
+@section SidePanel {
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li>
+                <a href="#" class="sidebar-toggle" data-target="#sidebar-collapse-1">
+                    <div class="dropdown-arrow"></div> Exercises
+                </a>
+
+                <ul class="sidebar-collapse" id="sidebar-collapse-1">
+                    <li>@Html.ActionLink("Add exercise", "AddExercise", new { }, new { @class = "sidebar-link" })</li>
+                    <li>@Html.ActionLink("View exercises", "ViewExercises", new { }, new { @class = "sidebar-link" })</li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" class="sidebar-toggle" data-target="#sidebar-collapse-2">
+                    <div class="dropdown-arrow"></div> Site statistics
+                </a>
+
+                <ul class="sidebar-collapse" id="sidebar-collapse-2">
+                    <li>@Html.ActionLink("View statistics", "ViewStatistics", new { }, new { @class = "sidebar-link" })</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+}
+
+@section Scripts {
+    <script src="~/Scripts/admin-controls.js"></script>
+    <script src="~/Scripts/admin-ui.js"></script>
+}

@@ -38,11 +38,6 @@ namespace GainTracker.Models.Repositories
                     UserName = Membership.GetUser().UserName
                 };
 
-                //vm.CreateDataPointViewModel = new CreateDataPointViewModel
-                //{
-                    
-                //}
-
                 return vm;
             }
         }
@@ -67,6 +62,28 @@ namespace GainTracker.Models.Repositories
             }
         }
 
+        #region Admin
+
+        public void AddExercise(CreateExerciseViewModel model)
+        {
+            using (var db = new GainTrackerContext(ACTIVE_CONNECTION))
+            {
+                db.Exercises.Add(Mapper.Map<Exercise>(model));
+                db.SaveChanges();
+            }
+        }
+
+        public Exercise[] GetExercises()
+        {
+            using (var db = new GainTrackerContext(ACTIVE_CONNECTION))
+            {
+                return db.Exercises.ToArray();
+            }
+        }
+
+        #endregion
+
+        #region Site statistics
 
         public void AddStatistic(CreateStatisticModel model)
         {
@@ -77,6 +94,36 @@ namespace GainTracker.Models.Repositories
             }
         }
 
+        public StatisticListViewModel[] GetStatistics()
+        {
+            using (var db = new GainTrackerContext(ACTIVE_CONNECTION))
+            {
+                var em = db.Statistics.OrderByDescending(s => s.Time).ToArray();
+                List<StatisticListViewModel> vm = new List<StatisticListViewModel>();
+
+                foreach (var item in em)
+                {
+                    if (String.Equals(item.IPAddress, "::1"))
+                        continue;
+
+                    if (vm.Count == 0 || vm.Last().Date != item.Time.Date)
+                    {
+                        var vmItem = new StatisticListViewModel
+                        {
+                            Date = item.Time.Date,
+                            Visitors = em.Where(v => v.Time.Date == item.Time.Date).Where(v => v.Type == (int)StatisticsHelper.StatisticTypes.Visitor || v.Type == (int)StatisticsHelper.StatisticTypes.UniqueVisitor).Count(),
+                            UniqueVisitors = em.Where(v => v.Time.Date == item.Time.Date).Where(v => v.Type == (int)StatisticsHelper.StatisticTypes.UniqueVisitor).Count(),
+                            RegisteredUsers = em.Where(v => v.Time.Date == item.Time.Date).Where(v => v.Type == (int)StatisticsHelper.StatisticTypes.Register).Count(),
+                            Items = Mapper.Map<StatisticViewModel[]>(em.Where(v => v.Time.Date == item.Time.Date).OrderByDescending(v => v.Time).ToArray())
+                        };
+
+                        vm.Add(vmItem);
+                    }
+                }
+
+                return vm.ToArray();
+            }
+        }
 
         public bool CheckIP(string address)
         {
@@ -113,5 +160,7 @@ namespace GainTracker.Models.Repositories
                 return false;
             }
         }
+
+        #endregion
     }
 }

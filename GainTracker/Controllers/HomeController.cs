@@ -22,14 +22,14 @@ namespace GainTracker.Controllers
         public ActionResult Index()
         {
             string address = Request.UserHostAddress;
-            int type = repository.CheckIP(address) ? (int)StatisticsHelper.StatisticTypes.Visitor : (int)StatisticsHelper.StatisticTypes.UniqueVisitor;
+            //int type = repository.CheckIP(address) ? (int)StatisticsHelper.StatisticTypes.Visitor : (int)StatisticsHelper.StatisticTypes.UniqueVisitor;
 
-            repository.AddStatistic(new CreateStatisticModel
-            {
-                Type = type,
-                Time = DateTime.Now,
-                IPAddress = address
-            });
+            //repository.AddStatistic(new CreateStatisticModel
+            //{
+            //    Type = type,
+            //    Time = DateTime.Now,
+            //    IPAddress = address
+            //});
 
             return View();
         }
