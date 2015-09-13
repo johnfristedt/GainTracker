@@ -20,24 +20,49 @@
         <th>
             @Html.DisplayNameFor(model => model.RegisteredUsers)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RegPerVisit)
+        </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Visitors)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UniqueVisitors)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RegisteredUsers)
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.Date.ToString("yyyy-MM-dd")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Visitors)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UniqueVisitors)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegisteredUsers)
+            </td>
+            <td>
+                @item.RegPerVisit
+            </td>
+            <td>
+                <button class="btn btn-info" data-toggle="collapse" data-target=".@item.Date.ToString("dd-MM-yyyy")">Show stuff</button>
+            </td>
+        </tr>
+
+        foreach (var user in item.Items)
+        {
+            <tr id="@item.Date.ToString("dd-MM-yyyy")" class="collapse @item.Date.ToString("dd-MM-yyyy")">
+                <td>
+                    @Html.DisplayFor(userItem => user.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(userItem => user.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(userItem => user.IPAddress)
+                </td>
+            </tr>
+        }
+    }
 
 </table>

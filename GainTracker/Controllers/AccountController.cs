@@ -52,7 +52,9 @@ namespace GainTracker.Controllers
             {
                 Type = (int)StatisticsHelper.StatisticTypes.Register,
                 Time = DateTime.Now,
-                IPAddress = Request.UserHostAddress
+                IPAddress = Request.UserHostAddress,
+                UserName = model.UserName,
+                Email = model.Email
             });
 
             return RedirectToAction("Index", "Profile");

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace GainTracker.Controllers
 {
@@ -22,14 +23,19 @@ namespace GainTracker.Controllers
         public ActionResult Index()
         {
             string address = Request.UserHostAddress;
-            //int type = repository.CheckIP(address) ? (int)StatisticsHelper.StatisticTypes.Visitor : (int)StatisticsHelper.StatisticTypes.UniqueVisitor;
+            int type = repository.CheckIP(address) ? (int)StatisticsHelper.StatisticTypes.Visitor : (int)StatisticsHelper.StatisticTypes.UniqueVisitor;
 
-            //repository.AddStatistic(new CreateStatisticModel
-            //{
-            //    Type = type,
-            //    Time = DateTime.Now,
-            //    IPAddress = address
-            //});
+            string userName = String.IsNullOrEmpty(User.Identity.Name) ? null : User.Identity.Name;
+            string email = userName == null ? null : Membership.GetUser(User.Identity.Name).Email;
+
+            repository.AddStatistic(new CreateStatisticModel
+            {
+                Type = type,
+                Time = DateTime.Now,
+                IPAddress = address,
+                UserName = userName,
+                Email = email,
+            });
 
             return View();
         }

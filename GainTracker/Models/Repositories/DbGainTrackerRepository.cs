@@ -16,7 +16,8 @@ namespace GainTracker.Models.Repositories
         const string LOCALDB = "GainTrackerLocalDB";
         const string TIMMILOCALDB = "TimmiLocalDB";
         const string LIVEDB = "GainTrackerLiveDB";
-        const string ACTIVE_CONNECTION = LIVEDB;
+        const string SERVERDB = "GainTrackerDB";
+        const string ACTIVE_CONNECTION = SERVERDB;
 
         public ViewModels.ProfileIndexViewModel GetProfileViewModel(string userName)
         {
@@ -116,6 +117,8 @@ namespace GainTracker.Models.Repositories
                             RegisteredUsers = em.Where(v => v.Time.Date == item.Time.Date).Where(v => v.Type == (int)StatisticsHelper.StatisticTypes.Register).Count(),
                             Items = Mapper.Map<StatisticViewModel[]>(em.Where(v => v.Time.Date == item.Time.Date).OrderByDescending(v => v.Time).ToArray())
                         };
+
+                        vmItem.Initialize();
 
                         vm.Add(vmItem);
                     }
