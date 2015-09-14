@@ -1,4 +1,4 @@
-﻿@model IEnumerable<GainTracker.Models.ViewModels.StatisticListViewModel>
+﻿@model GainTracker.Models.ViewModels.StatisticListViewModel
 
 @{
     ViewBag.Title = "ViewStatistics";
@@ -9,24 +9,24 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Date)
+            @Html.DisplayNameFor(model => model.Rows.First().Date)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Visitors)
+            @Html.DisplayNameFor(model => model.Rows.First().Visitors)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UniqueVisitors)
+            @Html.DisplayNameFor(model => model.Rows.First().UniqueVisitors)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.RegisteredUsers)
+            @Html.DisplayNameFor(model => model.Rows.First().RegisteredUsers)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.RegPerVisit)
+            @Html.DisplayNameFor(model => model.Rows.First().RegPerVisit)
         </th>
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
+    @foreach (var item in Model.Rows)
     {
         <tr>
             <td>

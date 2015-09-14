@@ -95,21 +95,22 @@ namespace GainTracker.Models.Repositories
             }
         }
 
-        public StatisticListViewModel[] GetStatistics()
+        public StatisticListViewModel GetStatistics()
         {
             using (var db = new GainTrackerContext(ACTIVE_CONNECTION))
             {
                 var em = db.Statistics.OrderByDescending(s => s.Time).ToArray();
-                List<StatisticListViewModel> vm = new List<StatisticListViewModel>();
+                StatisticListViewModel vm = new StatisticListViewModel();
+                vm.Rows = new List<StatisticListRowViewModel>();
 
                 foreach (var item in em)
                 {
                     if (String.Equals(item.IPAddress, "::1"))
                         continue;
 
-                    if (vm.Count == 0 || vm.Last().Date != item.Time.Date)
+                    if (vm.Rows.Count == 0 || vm.Rows.Last().Date != item.Time.Date)
                     {
-                        var vmItem = new StatisticListViewModel
+                        var vmItem = new StatisticListRowViewModel
                         {
                             Date = item.Time.Date,
                             Visitors = em.Where(v => v.Time.Date == item.Time.Date).Where(v => v.Type == (int)StatisticsHelper.StatisticTypes.Visitor || v.Type == (int)StatisticsHelper.StatisticTypes.UniqueVisitor).Count(),
@@ -120,11 +121,11 @@ namespace GainTracker.Models.Repositories
 
                         vmItem.Initialize();
 
-                        vm.Add(vmItem);
+                        vm.Rows.Add(vmItem);
                     }
                 }
 
-                return vm.ToArray();
+                return vm;
             }
         }
 

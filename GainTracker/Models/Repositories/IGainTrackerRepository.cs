@@ -23,7 +23,7 @@ namespace GainTracker.Models.Repositories
 
         #region Site statistics
         void AddStatistic(CreateStatisticModel model);
-        StatisticListViewModel[] GetStatistics();
+        StatisticListViewModel GetStatistics();
         bool CheckIP(string address);
         bool CheckRegister(string address);
         bool CheckLogin(string address);
