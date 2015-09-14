@@ -17,7 +17,7 @@ namespace GainTracker.Models.Repositories
         const string TIMMILOCALDB = "TimmiLocalDB";
         const string LIVEDB = "GainTrackerLiveDB";
         const string SERVERDB = "GainTrackerDB";
-        const string ACTIVE_CONNECTION = SERVERDB;
+        const string ACTIVE_CONNECTION = LIVEDB;
 
         public ViewModels.ProfileIndexViewModel GetProfileViewModel(string userName)
         {

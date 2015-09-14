@@ -16,6 +16,8 @@ namespace GainTracker.Models.ViewModels
         public int RegisteredUsers { get; set; }
         public string RegPerVisit { get; set; }
         public StatisticViewModel[] Items { get; set; }
+        public string[] Labels { get; set; }
+
 
         public void Initialize()
         {
