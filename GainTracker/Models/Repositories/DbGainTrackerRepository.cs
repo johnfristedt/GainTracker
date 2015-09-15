@@ -108,14 +108,17 @@ namespace GainTracker.Models.Repositories
                     if (String.Equals(item.IPAddress, "::1"))
                         continue;
 
+                    var today = em.Where(v => v.Time.Date == item.Time.Date).ToArray();
+
                     if (vm.Rows.Count == 0 || vm.Rows.Last().Date != item.Time.Date)
                     {
                         var vmItem = new StatisticListRowViewModel
                         {
                             Date = item.Time.Date,
-                            Visitors = em.Where(v => v.Time.Date == item.Time.Date).Where(v => v.Type == (int)StatisticsHelper.StatisticTypes.Visitor || v.Type == (int)StatisticsHelper.StatisticTypes.UniqueVisitor).Count(),
-                            UniqueVisitors = em.Where(v => v.Time.Date == item.Time.Date).Where(v => v.Type == (int)StatisticsHelper.StatisticTypes.UniqueVisitor).Count(),
-                            RegisteredUsers = em.Where(v => v.Time.Date == item.Time.Date).Where(v => v.Type == (int)StatisticsHelper.StatisticTypes.Register).Count(),
+                            Visitors = today.Where(v => v.Type == (int)StatisticsHelper.StatisticTypes.Visitor || v.Type == (int)StatisticsHelper.StatisticTypes.UniqueVisitor).Count(),
+                            UniqueVisitors = today.Where(v => v.Type == (int)StatisticsHelper.StatisticTypes.UniqueVisitor).Count(),
+                            RegisteredUsers = today.Where(v => v.Type == (int)StatisticsHelper.StatisticTypes.Register).Count(),
+                            AddedData = today.Where(v => v.Type == (int)StatisticsHelper.StatisticTypes.AddedData).Count(),
                             Items = Mapper.Map<StatisticViewModel[]>(em.Where(v => v.Time.Date == item.Time.Date).OrderByDescending(v => v.Time).ToArray())
                         };
 

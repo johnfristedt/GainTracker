@@ -21,6 +21,9 @@
             @Html.DisplayNameFor(model => model.Rows.First().RegisteredUsers)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Rows.First().AddedData)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Rows.First().RegPerVisit)
         </th>
         <th></th>
@@ -40,6 +43,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.RegisteredUsers)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddedData)
             </td>
             <td>
                 @item.RegPerVisit

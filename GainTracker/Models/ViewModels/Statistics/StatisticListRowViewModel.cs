@@ -14,6 +14,7 @@ namespace GainTracker.Models.ViewModels
         public int UniqueVisitors { get; set; }
         [Display(Name="Registered users")]
         public int RegisteredUsers { get; set; }
+        public int AddedData { get; set; }
         public string RegPerVisit { get; set; }
         public StatisticViewModel[] Items { get; set; }
         public string[] Labels { get; set; }
