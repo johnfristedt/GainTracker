@@ -171,13 +171,15 @@
     <Compile Include="Models\EntityModels\TrackedData.cs" />
     <Compile Include="Models\Repositories\DbGainTrackerRepository.cs" />
     <Compile Include="Models\Repositories\IGainTrackerRepository.cs" />
-    <Compile Include="Models\ViewModels\Create\CreateDataPointViewModel.cs" />
-    <Compile Include="Models\ViewModels\Create\CreateExerciseViewModel.cs" />
-    <Compile Include="Models\ViewModels\Create\CreateTrackedDataViewModel.cs" />
-    <Compile Include="Models\ViewModels\ExerciseViewModel.cs" />
+    <Compile Include="Models\ViewModels\Create%28legacy%29\CreateDataPointViewModel.cs" />
+    <Compile Include="Models\ViewModels\Admin\CreateExerciseViewModel.cs" />
+    <Compile Include="Models\ViewModels\Create%28legacy%29\CreateTrackedDataViewModel.cs" />
+    <Compile Include="Models\ViewModels\Profile\AddExerciseViewModel.cs" />
+    <Compile Include="Models\AjaxModels\AddExerciseModel.cs" />
     <Compile Include="Models\ViewModels\FormViewModel.cs" />
     <Compile Include="Models\ViewModels\LoginViewModel.cs" />
     <Compile Include="Models\ViewModels\ProfileIndexViewModel.cs" />
+    <Compile Include="Models\ViewModels\Profile\StoredExerciseViewModel.cs" />
     <Compile Include="Models\ViewModels\RegisterViewModel.cs" />
     <Compile Include="Models\ViewModels\Statistics\StatisticListRowViewModel.cs" />
     <Compile Include="Models\ViewModels\Statistics\StatisticListViewModel.cs" />
@@ -204,6 +206,7 @@
     <Content Include="Views\Admin\AddExercise.cshtml" />
     <Content Include="Views\Admin\ViewExercises.cshtml" />
     <Content Include="Views\Admin\ViewStatistics.cshtml" />
+    <Content Include="Views\Shared\_AddExercisePartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

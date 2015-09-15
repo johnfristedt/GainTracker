@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using GainTracker.Models.AjaxModels;
 using GainTracker.Models.Repositories;
 using GainTracker.Models.ViewModels;
 using System;
@@ -42,7 +43,7 @@ namespace GainTracker.Controllers
 
         public ActionResult ViewExercises()
         {
-            return View(Mapper.Map<ExerciseViewModel[]>(repository.GetExercises()));
+            return View(Mapper.Map<AddExerciseViewModel[]>(repository.GetExercises()));
         }
 
         public ActionResult ViewStatistics()
