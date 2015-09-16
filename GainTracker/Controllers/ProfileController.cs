@@ -47,7 +47,9 @@ namespace GainTracker.Controllers
             {
                 Type = (int)StatisticsHelper.StatisticTypes.AddedCat,
                 Time = DateTime.Now,
-                IPAddress = Request.UserHostAddress
+                IPAddress = Request.UserHostAddress,
+                UserName = User.Identity.Name,
+                Email = Membership.GetUser(User.Identity.Name).Email
             });
 
             return RedirectToAction("Index", "Profile");
@@ -75,7 +77,9 @@ namespace GainTracker.Controllers
             {
                 Type = (int)StatisticsHelper.StatisticTypes.AddedData,
                 Time = DateTime.Now,
-                IPAddress = Request.UserHostAddress
+                IPAddress = Request.UserHostAddress,
+                UserName = User.Identity.Name,
+                Email = Membership.GetUser(User.Identity.Name).Email
             });
 
             return RedirectToAction("Index", "Profile");
